@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    private string name;
+    public string playerName;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangeName(string name)
     {
-        this.name = name;
+        playerName = name;
     }
 
     private void StartGame()
@@ -83,11 +83,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetBestName(int score)
+    public void SetBestName(string name)
     {
         if (GameManager.Instance != null)
         {
             GameManager.Instance.bestScore.name = name;
+        }
+    }
+
+    public bool HasBestScore()
+    {
+        if (GameManager.Instance != null &&
+            GameManager.Instance.bestScore.name != null &&
+            GameManager.Instance.bestScore.name != "")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

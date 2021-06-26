@@ -73,5 +73,14 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        if (!GameManager.Instance.HasBestScore())
+        {
+            GameManager.Instance.SetBestName(GameManager.Instance.playerName);
+            GameManager.Instance.SetBestScore(m_Points);
+            bestScoreText.text = "Best Score: " +
+                                 GameManager.Instance.bestScore.name + ": " +
+                                 GameManager.Instance.bestScore.score;
+        }
     }
 }
